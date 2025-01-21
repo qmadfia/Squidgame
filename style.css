@@ -1,69 +1,111 @@
+/* Body styling */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', Arial, sans-serif;
     text-align: center;
     margin: 0;
     padding: 0;
-    background-color: #f8f9fa;
+    background: linear-gradient(to bottom right, #e3f2fd, #f8f9fa);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
+/* Heading styling */
 h1 {
-    margin-top: 20px;
-    color: #343a40;
+    margin-top: 0;
+    color: #1d3557;
+    font-size: 36px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* Container for the content */
 .container {
     margin: 20px auto;
     max-width: 600px;
-    padding: 20px;
+    padding: 30px;
     background: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    border: 1px solid #dee2e6;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Button styling */
 .button {
     padding: 15px 30px;
     margin: 10px;
     font-size: 18px;
     color: white;
-    background-color: #007bff;
+    background: linear-gradient(45deg, #007bff, #0056b3);
     border: none;
-    border-radius: 5px;
+    border-radius: 50px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
 }
 
 .button:hover {
-    background-color: #0056b3;
+    background: linear-gradient(45deg, #0056b3, #003d80);
+    box-shadow: 0 6px 15px rgba(0, 91, 180, 0.5);
+    transform: scale(1.05);
 }
 
+/* Result text styling */
 #result {
     margin-top: 20px;
-    font-size: 20px;
+    font-size: 22px;
     color: #495057;
+    font-weight: 600;
 }
 
+/* Spin section styling */
 .spin {
     display: flex;
     justify-content: center;
-    gap: 10px;
-    margin-top: 20px;
+    gap: 15px;
+    margin-top: 30px;
 }
 
 .spin-box {
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #e9ecef;
-    border-radius: 5px;
-    font-size: 24px;
+    background: #f1f3f5;
+    border-radius: 10px;
+    font-size: 26px;
     font-weight: bold;
     color: #343a40;
-    border: 2px solid #adb5bd;
+    border: 2px solid #ced4da;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
+.spin-box:hover {
+    background-color: #e9ecef;
+    transform: scale(1.1);
+}
+
+/* Image styling */
 img {
-    max-width: 100px;
+    max-width: 120px;
     margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+img:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }

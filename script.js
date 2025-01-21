@@ -1,7 +1,7 @@
 // Data roti
 const rotiList = [
-    { name: "Croissant", img src=".png" },
-    { name: "Donut", img src=".png" },
+    { name: "Croissant", img src="Croissant.png" },
+    { name: "Donut", img src="Donut.png" },
     { name: "Baguette", img src=".png" },
     { name: "Roti Tawar", img src=".png" }
     { name: "Roti Canai", img src=".png" }

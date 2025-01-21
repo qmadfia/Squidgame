@@ -4,6 +4,11 @@ const rotiList = [
     { name: "Donut", image: "https://via.placeholder.com/100?text=Donut" },
     { name: "Baguette", image: "https://via.placeholder.com/100?text=Baguette" },
     { name: "Roti Tawar", image: "https://via.placeholder.com/100?text=Roti+Tawar" }
+    { name: "Roti Canai", image: "https://via.placeholder.com/100?text=Roti+Tawar" }
+    { name: "Bagel", image: "https://via.placeholder.com/100?text=Roti+Tawar" }
+    { name: "Tortilla", image: "https://via.placeholder.com/100?text=Roti+Tawar" }
+    { name: "Roti Maryam", image: "https://via.placeholder.com/100?text=Roti+Tawar" }
+    { name: "Sourdough ", image: "https://via.placeholder.com/100?text=Roti+Tawar" }
 ];
 
 // Elemen DOM

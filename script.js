@@ -31,16 +31,32 @@ btnJudi.addEventListener("click", () => {
         .fill()
         .map(() => symbols[Math.floor(Math.random() * symbols.length)]);
 
-    result.innerHTML = `
-        <p>Hasil spin: ${spinResults.join(" | ")}</p>
-    `;
+    const spinResultContainer = document.getElementById("spin-result");
+    spinResultContainer.innerHTML = ""; // Kosongkan hasil sebelumnya
 
-    if (spinResults.every(symbol => symbol === "7")) {
-        result.innerHTML += `<p>🎉 Selamat! Kamu menang 1 Miliar! 🎉</p>`;
-    } else if (spinResults.includes("Bom")) {
-        result.innerHTML += `<p>💥 Kamu kalah karena ada bom! 💥</p>`;
-    } else {
-        result.innerHTML += `<p>😐 Tidak ada hadiah kali ini.</p>`;
-    }
+    // Menampilkan hasil spin dengan efek rolling
+    spinResults.forEach((symbol, index) => {
+        const spinBox = document.createElement("div");
+        spinBox.className = "spin-box rolling";
+        spinBox.innerText = symbol; // Simbol awal
+        spinResultContainer.appendChild(spinBox);
+
+        // Simulasi rolling
+        setTimeout(() => {
+            spinBox.innerText = symbol; // Ganti dengan simbol akhir
+            spinBox.classList.remove("rolling"); // Hapus efek rolling
+        }, (index + 1) * 1000); // Delay untuk setiap simbol
+    });
+
+    // Menentukan hasil akhir setelah semua simbol ditampilkan
+    setTimeout(() => {
+        if (spinResults.every(symbol => symbol === "7")) {
+            result.innerHTML += `<p>🎉 Selamat! Kamu menang 1 Miliar! 🎉</p>`;
+        } else if (spinResults.includes("Bom")) {
+            result.innerHTML += `<p>💥 Kamu kalah karena ada bom! 💥</p>`;
+        } else {
+            result.innerHTML += `<p>😐 Tidak ada hadiah kali ini.</p>`;
+        }
+    }, (spinResults.length + 1) * 1000); // Delay untuk menampilkan hasil akhir
 });
 

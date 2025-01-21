@@ -20,7 +20,7 @@ btnRoti.addEventListener("click", () => {
     const randomRoti = rotiList[Math.floor(Math.random() * rotiList.length)];
     result.innerHTML = `
         <p>Kamu mendapat: <strong>${randomRoti.name}</strong></p>
-        <img src="${randomRoti.image}" alt="${randomRoti.name}">
+        ${randomRoti.img}
     `;
 });
 

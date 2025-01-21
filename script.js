@@ -1,13 +1,13 @@
 // Data roti
 const rotiList = [
-    { name: "Croissant", img: "<img src='images/Croissant.png' alt='Croissant'>" },
-    { name: "Donut", img: "<img src='images/Donut.png' alt='Donut'>" },
-    { name: "Baguette", img: "<img src='images/Baguette.png' alt='Baguette'>" },
-    { name: "Roti Tawar", img: "<img src='images/Roti Tawar.png' alt='Roti Tawar'>" },
-    { name: "Roti Canai", img: "<img src='images/Roti Canai.png' alt='Roti Canai'>" },
-    { name: "Bagel", img: "<img src='images/Bagel.png' alt='Bagel'>" },
-    { name: "Tortilla", img: "<img src='images/Tortilla.png' alt='Tortilla'>" },
-    { name: "Sourdough", img: "<img src='images/Sourdough.png' alt='Sourdough'>" }
+    { name: "Croissant", img: "<img src='Images/Croissant.png' alt='Croissant'>" },
+    { name: "Donut", img: "<img src='Images/Donut.png' alt='Donut'>" },
+    { name: "Baguette", img: "<img src='Images/Baguette.png' alt='Baguette'>" },
+    { name: "Roti Tawar", img: "<img src='Images/Roti Tawar.png' alt='Roti Tawar'>" },
+    { name: "Roti Canai", img: "<img src='Images/Roti Canai.png' alt='Roti Canai'>" },
+    { name: "Bagel", img: "<img src='Images/Bagel.png' alt='Bagel'>" },
+    { name: "Tortilla", img: "<img src='Images/Tortilla.png' alt='Tortilla'>" },
+    { name: "Sourdough", img: "<img src='Images/Sourdough.png' alt='Sourdough'>" }
 ];
 
 // Elemen DOM

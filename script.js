@@ -1,13 +1,13 @@
 // Data roti
 const rotiList = [
-    { name: "Croissant", img src="Croissant.png" },
-    { name: "Donut", img src="Donut.png" },
-    { name: "Baguette", img src=".png" },
-    { name: "Roti Tawar", img src=".png" }
-    { name: "Roti Canai", img src=".png" }
-    { name: "Bagel", img src=".png" }
-    { name: "Tortilla", img src=".png" }
-    { name: "Sourdough ", img src=".png" }
+    { name: "Croissant", img: "<img src='images/Croissant.png' alt='Croissant'>" },
+    { name: "Donut", img: "<img src='images/Donut.png' alt='Donut'>" },
+    { name: "Baguette", img: "<img src='images/Baguette.png' alt='Baguette'>" },
+    { name: "Roti Tawar", img: "<img src='images/Roti Tawar.png' alt='Roti Tawar'>" },
+    { name: "Roti Canai", img: "<img src='images/Roti Canai.png' alt='Roti Canai'>" },
+    { name: "Bagel", img: "<img src='images/Bagel.png' alt='Bagel'>" },
+    { name: "Tortilla", img: "<img src='images/Tortilla.png' alt='Tortilla'>" },
+    { name: "Sourdough", img: "<img src='images/Sourdough.png' alt='Sourdough'>" }
 ];
 
 // Elemen DOM

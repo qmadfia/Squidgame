@@ -7,58 +7,76 @@ canvas.height = window.innerHeight;
 let particles = [];
 
 class Particle {
-  constructor(x, y, radius, color, angleSpeed) {
+  constructor(x, y, radius, color, velocity) {
     this.x = x;
     this.y = y;
     this.radius = radius;
     this.color = color;
-    this.angle = Math.random() * Math.PI * 2;
-    this.angleSpeed = angleSpeed;
-    this.baseX = x;
-    this.baseY = y;
+    this.velocity = velocity;
+    this.alpha = 1; // Opacity for fading
   }
 
   draw() {
+    ctx.save();
+    ctx.globalAlpha = this.alpha; // Set opacity
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
     ctx.fillStyle = this.color;
     ctx.fill();
     ctx.closePath();
+    ctx.restore();
   }
 
   update() {
-    this.angle += this.angleSpeed;
-    this.x = this.baseX + Math.sin(this.angle) * 50;
-    this.y = this.baseY + Math.cos(this.angle) * 50;
+    this.x += this.velocity.x;
+    this.y += this.velocity.y;
+
+    // Simulate gravity
+    this.velocity.y += 0.02;
+
+    // Slow fading
+    this.alpha -= 0.01;
+
     this.draw();
   }
 }
 
-function init() {
-  particles = [];
-  for (let i = 0; i < 200; i++) {
-    const radius = Math.random() * 5 + 2;
-    const x = Math.random() * canvas.width;
-    const y = Math.random() * canvas.height;
-    const color = `hsl(${Math.random() * 360}, 50%, 50%)`;
-    const angleSpeed = (Math.random() - 0.5) * 0.05;
-    particles.push(new Particle(x, y, radius, color, angleSpeed));
+function spawnParticles(x, y, count) {
+  for (let i = 0; i < count; i++) {
+    const angle = Math.random() * Math.PI * 2;
+    const speed = Math.random() * 4 + 1;
+    particles.push(
+      new Particle(
+        x,
+        y,
+        Math.random() * 5 + 2,
+        `hsl(${Math.random() * 360}, 50%, 50%)`,
+        {
+          x: Math.cos(angle) * speed,
+          y: Math.sin(angle) * speed,
+        }
+      )
+    );
   }
 }
 
 function animate() {
-  ctx.fillStyle = "rgba(30, 30, 47, 0.1)";
+  ctx.fillStyle = "rgba(30, 30, 47, 0.2)";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+  particles = particles.filter((particle) => particle.alpha > 0); // Remove faded particles
   particles.forEach((particle) => particle.update());
+
   requestAnimationFrame(animate);
 }
 
-init();
+canvas.addEventListener("click", (event) => {
+  spawnParticles(event.clientX, event.clientY, 50); // Spawn particles on click
+});
+
 animate();
 
 window.addEventListener("resize", () => {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
-  init();
 });

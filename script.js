@@ -14,21 +14,48 @@ class Particle {
     this.color = color;
     this.velocity = velocity;
     this.alpha = 1;
-    this.type = type; // 'circle' or 'triangle'
-    this.angle = Math.random() * Math.PI * 2;
+    this.type = type;
   }
 
   draw() {
     ctx.save();
     ctx.globalAlpha = this.alpha;
     ctx.beginPath();
-
-    if (this.type === 'circle') {
-      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-    } else if (this.type === 'triangle') {
-      ctx.moveTo(this.x, this.y);
-      ctx.lineTo(this.x + this.radius * Math.cos(this.angle), this.y + this.radius * Math.sin(this.angle));
-      ctx.lineTo(this.x + this.radius * Math.cos(this.angle + Math.PI * 2 / 3), this.y + this.radius * Math.sin(this.angle + Math.PI * 2 / 3));
+    
+    switch (this.type) {
+      case "star":
+        ctx.moveTo(this.x, this.y);
+        for (let i = 0; i < 5; i++) {
+          ctx.lineTo(this.x + this.radius * Math.cos(i * Math.PI * 2 / 5), this.y + this.radius * Math.sin(i * Math.PI * 2 / 5));
+        }
+        break;
+      case "light":
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        break;
+      case "spiral":
+        ctx.moveTo(this.x, this.y);
+        ctx.lineTo(this.x + Math.cos(this.velocity.angle) * this.radius, this.y + Math.sin(this.velocity.angle) * this.radius);
+        break;
+      case "fire":
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        break;
+      case "dust":
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        break;
+      case "wave":
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        break;
+      case "snow":
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        break;
+      case "water":
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        break;
+      case "explosion":
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        break;
+      default:
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
     }
 
     ctx.fillStyle = this.color;
@@ -40,30 +67,23 @@ class Particle {
   update() {
     this.x += this.velocity.x;
     this.y += this.velocity.y;
-    this.velocity.y += 0.05; // gravity
-    this.alpha -= 0.015; // fade out
+    this.alpha -= 0.01; // fade out
+    this.velocity.y += 0.02; // gravity
+
     this.draw();
   }
 }
 
-function spawnParticles(x, y, count) {
+function spawnParticles(x, y, count, type) {
   for (let i = 0; i < count; i++) {
     const angle = Math.random() * Math.PI * 2;
     const speed = Math.random() * 4 + 1;
-    const type = Math.random() > 0.5 ? 'circle' : 'triangle';
-    particles.push(
-      new Particle(
-        x,
-        y,
-        Math.random() * 5 + 2,
-        `hsl(${Math.random() * 360}, 50%, 50%)`,
-        {
-          x: Math.cos(angle) * speed,
-          y: Math.sin(angle) * speed,
-        },
-        type
-      )
-    );
+    const color = `hsl(${Math.random() * 360}, 50%, 50%)`;
+    particles.push(new Particle(x, y, Math.random() * 5 + 2, color, {
+      x: Math.cos(angle) * speed,
+      y: Math.sin(angle) * speed,
+      angle: angle,
+    }, type));
   }
 }
 
@@ -78,7 +98,8 @@ function animate() {
 }
 
 canvas.addEventListener("click", (event) => {
-  spawnParticles(event.clientX, event.clientY, 100);
+  const types = ["star", "light", "spiral", "fire", "dust", "wave", "snow", "water", "explosion"];
+  spawnParticles(event.clientX, event.clientY, 50, types[Math.floor(Math.random() * types.length)]);
 });
 
 animate();

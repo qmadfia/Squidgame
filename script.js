@@ -1,62 +1,61 @@
-// Data roti
-const rotiList = [
-    { name: "Croissant", img: "<img src='Images/Croissant.png' alt='Croissant'>" },
-    { name: "Donut", img: "<img src='Images/Donut.png' alt='Donut'>" },
-    { name: "Baguette", img: "<img src='Images/Baguette.png' alt='Baguette'>" },
-    { name: "Roti Tawar", img: "<img src='Images/Roti Tawar.png' alt='Roti Tawar'>" },
-    { name: "Roti Canai", img: "<img src='Images/Roti Canai.png' alt='Roti Canai'>" },
-    { name: "Bagel", img: "<img src='Images/Bagel.png' alt='Bagel'>" },
-    { name: "Tortilla", img: "<img src='Images/Tortilla.png' alt='Tortilla'>" },
-    { name: "Sourdough", img: "<img src='Images/Sourdough.png' alt='Sourdough'>" }
-];
+const canvas = document.getElementById("animationCanvas");
+const ctx = canvas.getContext("2d");
 
-// Elemen DOM
-const btnRoti = document.getElementById("btn-roti");
-const btnJudi = document.getElementById("btn-judi");
-const result = document.getElementById("result");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
-// Pilih Roti
-btnRoti.addEventListener("click", () => {
-    const randomRoti = rotiList[Math.floor(Math.random() * rotiList.length)];
-    result.innerHTML = `
-        <p>Kamu mendapat: <strong>${randomRoti.name}</strong></p>
-        ${randomRoti.img}
-    `;
+let particles = [];
+
+class Particle {
+  constructor(x, y, radius, color, velocity) {
+    this.x = x;
+    this.y = y;
+    this.radius = radius;
+    this.color = color;
+    this.velocity = velocity;
+  }
+
+  draw() {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+    ctx.fillStyle = this.color;
+    ctx.fill();
+    ctx.closePath();
+  }
+
+  update() {
+    this.x += this.velocity.x;
+    this.y += this.velocity.y;
+    this.draw();
+  }
+}
+
+function init() {
+  particles = [];
+  for (let i = 0; i < 100; i++) {
+    const radius = Math.random() * 5 + 2;
+    const x = Math.random() * canvas.width;
+    const y = Math.random() * canvas.height;
+    const color = `hsl(${Math.random() * 360}, 50%, 50%)`;
+    const velocity = {
+      x: (Math.random() - 0.5) * 2,
+      y: (Math.random() - 0.5) * 2,
+    };
+    particles.push(new Particle(x, y, radius, color, velocity));
+  }
+}
+
+function animate() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  particles.forEach((particle) => particle.update());
+  requestAnimationFrame(animate);
+}
+
+init();
+animate();
+
+window.addEventListener("resize", () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  init();
 });
-
-// Pilih Judi
-btnJudi.addEventListener("click", () => {
-    const symbols = ["7", "Bom", "★"];
-    const spinResults = Array(3)
-        .fill()
-        .map(() => symbols[Math.floor(Math.random() * symbols.length)]);
-
-    const spinResultContainer = document.getElementById("spin-result");
-    spinResultContainer.innerHTML = ""; // Kosongkan hasil sebelumnya
-
-    // Menampilkan hasil spin dengan efek rolling
-    spinResults.forEach((symbol, index) => {
-        const spinBox = document.createElement("div");
-        spinBox.className = "spin-box rolling";
-        spinBox.innerText = symbol; // Simbol awal
-        spinResultContainer.appendChild(spinBox);
-
-        // Simulasi rolling
-        setTimeout(() => {
-            spinBox.innerText = symbol; // Ganti dengan simbol akhir
-            spinBox.classList.remove("rolling"); // Hapus efek rolling
-        }, (index + 1) * 1000); // Delay untuk setiap simbol
-    });
-
-    // Menentukan hasil akhir setelah semua simbol ditampilkan
-    setTimeout(() => {
-        if (spinResults.every(symbol => symbol === "7")) {
-            result.innerHTML += `<p>🎉 Selamat! Kamu menang 1 Miliar! 🎉</p>`;
-        } else if (spinResults.includes("Bom")) {
-            result.innerHTML += `<p>💥 Kamu kalah karena ada bom! 💥</p>`;
-        } else {
-            result.innerHTML += `<p>😐 Tidak ada hadiah kali ini.</p>`;
-        }
-    }, (spinResults.length + 1) * 1000); // Delay untuk menampilkan hasil akhir
-});
-

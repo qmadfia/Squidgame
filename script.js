@@ -4,7 +4,6 @@ const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-let particles = [];
 let mouse = { x: canvas.width / 2, y: canvas.height / 2 };
 
 document.addEventListener('mousemove', (e) => {
@@ -12,56 +11,52 @@ document.addEventListener('mousemove', (e) => {
   mouse.y = e.clientY;
 });
 
-class Particle {
+class Amoeba {
   constructor(x, y) {
     this.x = x;
     this.y = y;
-    this.size = Math.random() * 5 + 5;
-    this.speedX = Math.random() * 1 - 0.5;
-    this.speedY = Math.random() * 1 - 0.5;
-    this.alpha = 1;
+    this.size = 150;
+    this.color = `hsla(${Math.random() * 360}, 70%, 60%, 0.7)`; // Vaporwave color
+    this.points = [];
+    this.alpha = 0.5;
+  }
+
+  addPoints() {
+    const numPoints = 12;
+    this.points = [];
+    for (let i = 0; i < numPoints; i++) {
+      const angle = (i / numPoints) * Math.PI * 2;
+      const distance = this.size + Math.random() * 20 - 10;
+      const x = this.x + Math.cos(angle) * distance;
+      const y = this.y + Math.sin(angle) * distance;
+      this.points.push({ x, y });
+    }
   }
 
   update() {
-    let dx = this.x - mouse.x;
-    let dy = this.y - mouse.y;
-    let distance = Math.sqrt(dx * dx + dy * dy);
-
-    // Attract particles toward the mouse
-    if (distance < 100) {
-      this.speedX = dx * 0.02;
-      this.speedY = dy * 0.02;
-    }
-
-    // Move particles and fade them
-    this.x -= this.speedX;
-    this.y -= this.speedY;
-    this.alpha -= 0.01;
-    if (this.alpha <= 0) this.alpha = 1;
-
+    this.x = mouse.x;
+    this.y = mouse.y;
+    this.addPoints();
     this.draw();
   }
 
   draw() {
-    ctx.fillStyle = `rgba(255, 255, 255, ${this.alpha})`;
     ctx.beginPath();
-    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.moveTo(this.points[0].x, this.points[0].y);
+    for (let i = 1; i < this.points.length; i++) {
+      ctx.lineTo(this.points[i].x, this.points[i].y);
+    }
+    ctx.closePath();
+    ctx.fillStyle = this.color;
     ctx.fill();
   }
 }
 
+const amoeba = new Amoeba(mouse.x, mouse.y);
+
 function animate() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  
-  particles.push(new Particle(mouse.x, mouse.y));
-
-  particles.forEach((particle, index) => {
-    if (particle.alpha <= 0) {
-      particles.splice(index, 1);
-    }
-    particle.update();
-  });
-
+  amoeba.update();
   requestAnimationFrame(animate);
 }
 

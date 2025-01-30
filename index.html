@@ -3,143 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vaporwave Paradise</title>
-    <meta name="description" content="Neon Dreamscape with Classical Elements">
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.4.0/simplex-noise.min.js"></script>
+    <title>Husamah Khoirut Tamam - Full Stack Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Retro Overlay Effects -->
-    <div class="sunburst"></div>
-    <div class="grid-overlay"></div>
-    <div class="palm-shadow"></div>
-    
-    <!-- Main Container -->
-    <div class="paradise-container">
-        <!-- Vaporwave Header -->
-        <header class="aesthetic-header">
-            <div class="retro-glitch">
-                <h1 class="neon-title" data-text="VAPORWAVE_DAYS">VAPORWAVE_DAYS</h1>
-                <div class="greco-statue">
-                    <img src="https://cdn-icons-png.flaticon.com/512/619/619032.png" alt="Greek Statue">
+    <header class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="profile-image">
+                    <img src="profile.jpg" alt="Husamah Khoirut Tamam">
                 </div>
-            </div>
-        </header>
-
-        <!-- Dreamscape Canvas -->
-        <div class="canvas-sanctuary">
-            <canvas id="blissCanvas"></canvas>
-            <div class="pyramid-overlay"></div>
-        </div>
-
-        <!-- Aesthetic Control Panel -->
-        <section class="vapor-controls">
-            <div class="control-section pastel-box">
-                <h2 class="control-title">A E S T H E T I C&nbsp;&nbsp;C O N T R O L</h2>
-                <div class="vapor-group">
-                    <div class="rainbow-slider">
-                        <input type="range" class="hue-control" id="vibeRange" min="0" max="100" value="80">
-                        <label for="vibeRange">V I B E&nbsp;&nbsp;L E V E L</label>
-                    </div>
-                    <div class="color-display">
-                        <span class="pastel-dot pink"></span>
-                        <span class="pastel-dot cyan"></span>
-                        <span class="pastel-dot purple"></span>
-                    </div>
+                <h1 class="name">Husamah Khoirut Tamam</h1>
+                <h2 class="title">Full Stack Developer</h2>
+                <div class="social-links">
+                    <a href="https://github.com/hsmkrt1996" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com/in/hsmkrt1996" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="mailto:your.email@example.com"><i class="fas fa-envelope"></i></a>
                 </div>
-            </div>
-
-            <div class="control-section bliss-meter">
-                <div class="mood-item">
-                    <span class="mood-label">P O S I T I V E&nbsp;&nbsp;V I B E S</span>
-                    <div class="mood-bar">
-                        <div class="mood-fill gradient" style="width: 85%"></div>
-                    </div>
-                </div>
-                <div class="mood-item">
-                    <span class="mood-label">C H I L L&nbsp;&nbsp;F A C T O R</span>
-                    <div class="mood-bar">
-                        <div class="mood-fill gradient pulse" style="width: 95%"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Retro Terminal -->
-        <div class="cyber-terminal">
-            <div class="terminal-head">
-                <span class="retro-cursor">C:\VAPOR\DREAM.EXE</span>
-                <div class="terminal-buttons">
-                    <button class="diskette">💾</button>
-                    <button class="rainbow">🌈</button>
-                </div>
-            </div>
-            <div class="terminal-screen">
-                <pre class="ascii-art">
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⣀⣀⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⢀⣤⠶⠛⠉⠉⠉⠉⠉⠉⠉⠛⠳⣦⡀⠀⠀⠀⠀⠀
-⠀⠀⠀⣠⠞⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⢦⡀⠀⠀⠀
-⠀⢀⡾⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠹⣄⠀⠀
-⢀⡞⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣆⠀
-⣾⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⣀⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠸⡄
-⡇⠀⠀⠀⠀⣠⡴⠞⠛⠉⠉⠉⠉⠉⠉⠛⠳⣦⣄⠀⠀⠀⠀⠀⢳
-⣧⠀⠀⠀⣴⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⢷⡄⠀⠀⠀⣼
-⠘⣧⠀⢸⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⡀⠀⢰⠏
-⠀⠹⣇⢸⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢣⠀⣿⠁
-⠀⠀⠘⢿⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣴⠏⠀
-⠀⠀⠀⠀⠻⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣾⠏⠀⠀
-⠀⠀⠀⠀⠀⠈⠻⣦⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣤⠞⠁⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⠶⣤⣤⣤⣤⡴⠶⠛⠉⠀⠀⠀⠀⠀⠀
-                </pre>
-                <p class="terminal-text">INITIALIZING GOOD VIBES...</p>
-            </div>
-        </div>
-
-        <!-- Bliss Overload Modal -->
-        <div class="bliss-modal hidden">
-            <div class="modal-content">
-                <div class="modal-head">
-                    <h2>🌈 B L I S S&nbsp;&nbsp;O V E R L O A D 🌈</h2>
-                    <div class="sunshine"></div>
-                </div>
-                <div class="modal-body">
-                    <p>TOO MUCH POSITIVITY DETECTED!</p>
-                    <div class="bliss-counter">
-                        <span id="blissMeter">100% HAPPINESS</span>
-                    </div>
-                </div>
-                <div class="modal-feet">
-                    <button class="chill-btn">C O O L&nbsp;&nbsp;D O W N</button>
+                <div class="scroll-indicator">
+                    <i class="fas fa-chevron-down"></i>
                 </div>
             </div>
         </div>
-    </div>
+    </header>
 
-    <!-- Audio Elements -->
-    <audio id="synthwave" loop>
-        <source src="https://assets.mixkit.co/music/preview/mixkit-synthwave-positiv-442.mp3" type="audio/mpeg">
-    </audio>
+    <section class="projects">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <article class="project-card">
+                    <div class="project-image">
+                        <img src="project1.jpg" alt="EdukasiAI">
+                    </div>
+                    <div class="project-info">
+                        <h3>EdukasiAI</h3>
+                        <p>AI-powered education platform with personalized learning paths and real-time analytics.</p>
+                        <div class="tech-tags">
+                            <span>React</span>
+                            <span>Node.js</span>
+                            <span>Python</span>
+                            <span>PostgreSQL</span>
+                        </div>
+                    </div>
+                </article>
 
-    <!-- SVG Filters -->
-    <svg style="display: none;">
-        <filter id="dreamy">
-            <feGaussianBlur stdDeviation="2" />
-            <feColorMatrix type="matrix"
-                values="1 0 0 0 0
-                        0 1 0 0 0 
-                        0 0 1 0 0 
-                        0 0 0 18 -7" />
-        </filter>
-        <filter id="retro-glow">
-            <feFlood flood-color="#ff71ce" result="COLOR"/>
-            <feComposite in="COLOR" in2="SourceGraphic" operator="in" result="COLOR_FILTER"/>
-            <feGaussianBlur in="COLOR_FILTER" stdDeviation="5" result="GLOW"/>
-            <feMerge>
-                <feMergeNode in="GLOW"/>
-                <feMergeNode in="SourceGraphic"/>
-            </feMerge>
-        </filter>
-    </svg>
+                <!-- Project 2 -->
+                <article class="project-card">
+                    <div class="project-image">
+                        <img src="project2.jpg" alt="TaskFlow">
+                    </div>
+                    <div class="project-info">
+                        <h3>TaskFlow</h3>
+                        <p>Collaborative task management system with real-time updates and team coordination features.</p>
+                        <div class="tech-tags">
+                            <span>Next.js</span>
+                            <span>NestJS</span>
+                            <span>MongoDB</span>
+                            <span>Socket.io</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 3 -->
+                <article class="project-card">
+                    <div class="project-image">
+                        <img src="project3.jpg" alt="HealthTrack">
+                    </div>
+                    <div class="project-info">
+                        <h3>HealthTrack</h3>
+                        <p>Personal health monitoring system with wearable device integration and AI analysis.</p>
+                        <div class="tech-tags">
+                            <span>React Native</span>
+                            <span>Express.js</span>
+                            <span>TensorFlow</span>
+                            <span>AWS</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact">
+        <div class="container">
+            <h2 class="section-title">Get in Touch</h2>
+            <form class="contact-form">
+                <div class="form-group">
+                    <input type="text" placeholder="Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                    <textarea placeholder="Message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn">Send Message</button>
+            </form>
+        </div>
+    </section>
 
     <script src="script.js"></script>
 </body>

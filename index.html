@@ -1,131 +1,143 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dark Biohazard Amoeba</title>
-    <meta name="description" content="Simulasi Amoeba Biohazard Interaktif dengan Efek Visual Advanced">
+    <title>Vaporwave Paradise</title>
+    <meta name="description" content="Neon Dreamscape with Classical Elements">
     <link rel="stylesheet" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.4.0/simplex-noise.min.js"></script>
 </head>
 <body>
-    <!-- Overlay Efek Visual -->
-    <div class="scanlines"></div>
-    <div class="crt-effect"></div>
-    <div class="particle-overlay"></div>
+    <!-- Retro Overlay Effects -->
+    <div class="sunburst"></div>
+    <div class="grid-overlay"></div>
+    <div class="palm-shadow"></div>
     
     <!-- Main Container -->
-    <div class="main-container">
-        <!-- Header -->
-        <header class="biohazard-header">
-            <div class="glitch-container">
-                <h1 class="glitch-text" data-text="BIOHAZARD_AMOEBA_ALPHA">BIOHAZARD_AMOEBA_ALPHA</h1>
-                <div class="biohazard-symbol"></div>
+    <div class="paradise-container">
+        <!-- Vaporwave Header -->
+        <header class="aesthetic-header">
+            <div class="retro-glitch">
+                <h1 class="neon-title" data-text="VAPORWAVE_DAYS">VAPORWAVE_DAYS</h1>
+                <div class="greco-statue">
+                    <img src="https://cdn-icons-png.flaticon.com/512/619/619032.png" alt="Greek Statue">
+                </div>
             </div>
         </header>
 
-        <!-- Canvas Container -->
-        <div class="canvas-wrapper">
-            <canvas id="amoebaCanvas"></canvas>
-            <div class="interaction-overlay"></div>
+        <!-- Dreamscape Canvas -->
+        <div class="canvas-sanctuary">
+            <canvas id="blissCanvas"></canvas>
+            <div class="pyramid-overlay"></div>
         </div>
 
-        <!-- Control Panel -->
-        <section class="control-panel">
-            <div class="panel-section danger-zone">
-                <h2 class="panel-title">CONTAINMENT CONTROLS</h2>
-                <div class="control-group">
-                    <div class="knob-container">
-                        <input type="range" class="bio-knob" id="toxicityRange" min="0" max="100" value="75">
-                        <label for="toxicityRange">TOXICITY LEVEL</label>
+        <!-- Aesthetic Control Panel -->
+        <section class="vapor-controls">
+            <div class="control-section pastel-box">
+                <h2 class="control-title">A E S T H E T I C&nbsp;&nbsp;C O N T R O L</h2>
+                <div class="vapor-group">
+                    <div class="rainbow-slider">
+                        <input type="range" class="hue-control" id="vibeRange" min="0" max="100" value="80">
+                        <label for="vibeRange">V I B E&nbsp;&nbsp;L E V E L</label>
                     </div>
-                    <div class="led-display">
-                        <span class="led active"></span>
-                        <span class="led"></span>
-                        <span class="led"></span>
+                    <div class="color-display">
+                        <span class="pastel-dot pink"></span>
+                        <span class="pastel-dot cyan"></span>
+                        <span class="pastel-dot purple"></span>
                     </div>
                 </div>
             </div>
 
-            <div class="panel-section stats">
-                <div class="stat-item">
-                    <span class="stat-label">INFECTION RATE</span>
-                    <div class="stat-bar">
-                        <div class="stat-fill" style="width: 45%"></div>
+            <div class="control-section bliss-meter">
+                <div class="mood-item">
+                    <span class="mood-label">P O S I T I V E&nbsp;&nbsp;V I B E S</span>
+                    <div class="mood-bar">
+                        <div class="mood-fill gradient" style="width: 85%"></div>
                     </div>
                 </div>
-                <div class="stat-item">
-                    <span class="stat-label">MUTATION SPEED</span>
-                    <div class="stat-bar">
-                        <div class="stat-fill pulsating" style="width: 68%"></div>
+                <div class="mood-item">
+                    <span class="mood-label">C H I L L&nbsp;&nbsp;F A C T O R</span>
+                    <div class="mood-bar">
+                        <div class="mood-fill gradient pulse" style="width: 95%"></div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Debug Console -->
-        <div class="debug-console">
-            <div class="console-header">
-                <span>SYSTEM MONITOR</span>
-                <div class="console-controls">
-                    <button class="console-btn collapse-btn">−</button>
-                    <button class="console-btn expand-btn">✚</button>
+        <!-- Retro Terminal -->
+        <div class="cyber-terminal">
+            <div class="terminal-head">
+                <span class="retro-cursor">C:\VAPOR\DREAM.EXE</span>
+                <div class="terminal-buttons">
+                    <button class="diskette">💾</button>
+                    <button class="rainbow">🌈</button>
                 </div>
             </div>
-            <div class="console-body">
-                <pre id="debugLog"></pre>
+            <div class="terminal-screen">
+                <pre class="ascii-art">
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⣀⣀⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⢀⣤⠶⠛⠉⠉⠉⠉⠉⠉⠉⠛⠳⣦⡀⠀⠀⠀⠀⠀
+⠀⠀⠀⣠⠞⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⢦⡀⠀⠀⠀
+⠀⢀⡾⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠹⣄⠀⠀
+⢀⡞⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣆⠀
+⣾⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⣀⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠸⡄
+⡇⠀⠀⠀⠀⣠⡴⠞⠛⠉⠉⠉⠉⠉⠉⠛⠳⣦⣄⠀⠀⠀⠀⠀⢳
+⣧⠀⠀⠀⣴⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⢷⡄⠀⠀⠀⣼
+⠘⣧⠀⢸⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⡀⠀⢰⠏
+⠀⠹⣇⢸⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢣⠀⣿⠁
+⠀⠀⠘⢿⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣴⠏⠀
+⠀⠀⠀⠀⠻⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣾⠏⠀⠀
+⠀⠀⠀⠀⠀⠈⠻⣦⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣤⠞⠁⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⠶⣤⣤⣤⣤⡴⠶⠛⠉⠀⠀⠀⠀⠀⠀
+                </pre>
+                <p class="terminal-text">INITIALIZING GOOD VIBES...</p>
             </div>
         </div>
 
-        <!-- Terminal Overlay -->
-        <div class="terminal-overlay">
-            <div class="terminal-content">
-                <div class="terminal-header">
-                    <span class="blinking-cursor">>_ CONTAINMENT PROTOCOL ACTIVATED</span>
-                </div>
-                <div class="terminal-body">
-                    <p class="terminal-text glitch">INITIALIZING BIOHAZARD SYSTEMS...</p>
-                    <p class="terminal-text">LOADING NEURAL NETWORK...</p>
-                    <p class="terminal-text warning">WARNING: PATHOGEN DETECTED</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Emergency Modal -->
-        <div class="emergency-modal hidden">
+        <!-- Bliss Overload Modal -->
+        <div class="bliss-modal hidden">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h2>CONTAINMENT BREACH</h2>
-                    <div class="warning-symbol"></div>
+                <div class="modal-head">
+                    <h2>🌈 B L I S S&nbsp;&nbsp;O V E R L O A D 🌈</h2>
+                    <div class="sunshine"></div>
                 </div>
                 <div class="modal-body">
-                    <p>CRITICAL SYSTEM FAILURE DETECTED</p>
-                    <div class="countdown-timer">
-                        <span id="countdown">00:45</span>
+                    <p>TOO MUCH POSITIVITY DETECTED!</p>
+                    <div class="bliss-counter">
+                        <span id="blissMeter">100% HAPPINESS</span>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button class="emergency-btn">ACTIVATE QUARANTINE</button>
+                <div class="modal-feet">
+                    <button class="chill-btn">C O O L&nbsp;&nbsp;D O W N</button>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Audio Elements -->
-    <audio id="ambientSound" loop>
-        <source src="https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3" type="audio/mpeg">
+    <audio id="synthwave" loop>
+        <source src="https://assets.mixkit.co/music/preview/mixkit-synthwave-positiv-442.mp3" type="audio/mpeg">
     </audio>
 
     <!-- SVG Filters -->
     <svg style="display: none;">
-        <filter id="turbulence">
-            <feTurbulence type="fractalNoise" baseFrequency="0.005" numOctaves="3" />
-            <feDisplacementMap in="SourceGraphic" scale="15" />
+        <filter id="dreamy">
+            <feGaussianBlur stdDeviation="2" />
+            <feColorMatrix type="matrix"
+                values="1 0 0 0 0
+                        0 1 0 0 0 
+                        0 0 1 0 0 
+                        0 0 0 18 -7" />
         </filter>
-        <filter id="staticNoise">
-            <feTurbulence type="turbulence" baseFrequency="0.5" result="noise"/>
-            <feColorMatrix type="saturate" values="0"/>
-            <feBlend in="SourceGraphic" mode="multiply"/>
+        <filter id="retro-glow">
+            <feFlood flood-color="#ff71ce" result="COLOR"/>
+            <feComposite in="COLOR" in2="SourceGraphic" operator="in" result="COLOR_FILTER"/>
+            <feGaussianBlur in="COLOR_FILTER" stdDeviation="5" result="GLOW"/>
+            <feMerge>
+                <feMergeNode in="GLOW"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
         </filter>
     </svg>
 

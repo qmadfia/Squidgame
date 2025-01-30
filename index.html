@@ -1,16 +1,134 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Amoeba Effect</title>
-  <style>
-    body { margin: 0; overflow: hidden; background-color: #121212; }
-    canvas { display: block; position: absolute; top: 0; left: 0; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Biohazard Amoeba</title>
+    <meta name="description" content="Simulasi Amoeba Biohazard Interaktif dengan Efek Visual Advanced">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.4.0/simplex-noise.min.js"></script>
 </head>
 <body>
-  <canvas id="canvas"></canvas>
-  <script src="script.js"></script>
+    <!-- Overlay Efek Visual -->
+    <div class="scanlines"></div>
+    <div class="crt-effect"></div>
+    <div class="particle-overlay"></div>
+    
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Header -->
+        <header class="biohazard-header">
+            <div class="glitch-container">
+                <h1 class="glitch-text" data-text="BIOHAZARD_AMOEBA_ALPHA">BIOHAZARD_AMOEBA_ALPHA</h1>
+                <div class="biohazard-symbol"></div>
+            </div>
+        </header>
+
+        <!-- Canvas Container -->
+        <div class="canvas-wrapper">
+            <canvas id="amoebaCanvas"></canvas>
+            <div class="interaction-overlay"></div>
+        </div>
+
+        <!-- Control Panel -->
+        <section class="control-panel">
+            <div class="panel-section danger-zone">
+                <h2 class="panel-title">CONTAINMENT CONTROLS</h2>
+                <div class="control-group">
+                    <div class="knob-container">
+                        <input type="range" class="bio-knob" id="toxicityRange" min="0" max="100" value="75">
+                        <label for="toxicityRange">TOXICITY LEVEL</label>
+                    </div>
+                    <div class="led-display">
+                        <span class="led active"></span>
+                        <span class="led"></span>
+                        <span class="led"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-section stats">
+                <div class="stat-item">
+                    <span class="stat-label">INFECTION RATE</span>
+                    <div class="stat-bar">
+                        <div class="stat-fill" style="width: 45%"></div>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">MUTATION SPEED</span>
+                    <div class="stat-bar">
+                        <div class="stat-fill pulsating" style="width: 68%"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Debug Console -->
+        <div class="debug-console">
+            <div class="console-header">
+                <span>SYSTEM MONITOR</span>
+                <div class="console-controls">
+                    <button class="console-btn collapse-btn">−</button>
+                    <button class="console-btn expand-btn">✚</button>
+                </div>
+            </div>
+            <div class="console-body">
+                <pre id="debugLog"></pre>
+            </div>
+        </div>
+
+        <!-- Terminal Overlay -->
+        <div class="terminal-overlay">
+            <div class="terminal-content">
+                <div class="terminal-header">
+                    <span class="blinking-cursor">>_ CONTAINMENT PROTOCOL ACTIVATED</span>
+                </div>
+                <div class="terminal-body">
+                    <p class="terminal-text glitch">INITIALIZING BIOHAZARD SYSTEMS...</p>
+                    <p class="terminal-text">LOADING NEURAL NETWORK...</p>
+                    <p class="terminal-text warning">WARNING: PATHOGEN DETECTED</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Emergency Modal -->
+        <div class="emergency-modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>CONTAINMENT BREACH</h2>
+                    <div class="warning-symbol"></div>
+                </div>
+                <div class="modal-body">
+                    <p>CRITICAL SYSTEM FAILURE DETECTED</p>
+                    <div class="countdown-timer">
+                        <span id="countdown">00:45</span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="emergency-btn">ACTIVATE QUARANTINE</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio Elements -->
+    <audio id="ambientSound" loop>
+        <source src="https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- SVG Filters -->
+    <svg style="display: none;">
+        <filter id="turbulence">
+            <feTurbulence type="fractalNoise" baseFrequency="0.005" numOctaves="3" />
+            <feDisplacementMap in="SourceGraphic" scale="15" />
+        </filter>
+        <filter id="staticNoise">
+            <feTurbulence type="turbulence" baseFrequency="0.5" result="noise"/>
+            <feColorMatrix type="saturate" values="0"/>
+            <feBlend in="SourceGraphic" mode="multiply"/>
+        </filter>
+    </svg>
+
+    <script src="app.js"></script>
 </body>
 </html>
